@@ -7,6 +7,6 @@ A starter project with:
 
 ```
 PRIVATE_KEY=<wallet private key with admin/minter role>
-NEXT_PUBLIC_RPC_URL=<alchemy / infura / rpc url. defaults to public rpc if left empty>
+NEXT_PUBLIC_RPC_URL=<alchemy / infura / rpc url. defaults to Polygon Mumbai public rpc if left empty>
 NEXT_PUBLIC_NFT_MODULE_ADDRESS=<NFT module address from console.nftlabs.co>
 ```
