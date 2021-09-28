@@ -2,6 +2,18 @@ import { NFTLabsSDK } from "@nftlabs/sdk";
 import { ethers } from "ethers";
 import { NextApiRequest, NextApiResponse } from "next";
 
+function getRpcUrl() {
+  const isTestnet = process.env.IS_TEST_NET || true;
+  if (!process.env.NEXT_PUBLIC_RPC_URL) {
+    if (isTestnet) {
+      return "https://rpc-mumbai.maticvigil.com";
+    } else {
+      return "https://polygon-rpc.com";
+    }
+  }
+  return process.env.NEXT_PUBLIC_RPC_URL;
+}
+
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -42,7 +54,7 @@ export default (req: NextApiRequest, res: NextApiResponse): Promise<any> => {
   const sdk = new NFTLabsSDK(
     new ethers.Wallet(
       process.env.PRIVATE_KEY as string,
-      ethers.getDefaultProvider(process.env.NEXT_PUBLIC_RPC_URL)
+      ethers.getDefaultProvider(getRpcUrl())
     )
   );
 

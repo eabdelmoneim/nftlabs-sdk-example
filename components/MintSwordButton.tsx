@@ -1,12 +1,11 @@
 import { useEthers } from "@usedapp/core";
 import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Button, useToast } from "@chakra-ui/react";
 
 export const MintSwordButton: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { account } = useEthers();
-  const router = useRouter();
+  const toast = useToast();
 
   async function mintSwordFromAPI() {
     setLoading(true);
@@ -23,7 +22,10 @@ export const MintSwordButton: React.FC = () => {
     });
 
     setLoading(false);
-    setTimeout(() => router.reload(), 500);
+    toast({
+      title: "You've obtained your gold sword!",
+      description: "refresh the page to see your updated inventory.",
+    });
   }
 
   return (
