@@ -1,8 +1,5 @@
-import React from "react";
 import {
-  Button,
   Box,
-  Container,
   Flex,
   FormControl,
   FormLabel,
@@ -10,15 +7,13 @@ import {
   Switch,
   Text,
   useColorMode,
-  HStack,
 } from "@chakra-ui/react";
-
 import { useEthers } from "@usedapp/core";
-
-import { Wallet } from "components/Wallet";
 import { ConnectWalletButton } from "components/ConnectWallet";
 import { MintSwordButton } from "components/MintSwordButton";
 import { SwordList } from "components/SwordList";
+import { Wallet } from "components/Wallet";
+import React from "react";
 
 const HomePage: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -27,7 +22,7 @@ const HomePage: React.FC = () => {
   return (
     <Flex minH="100vh" flexDir="row" p={16}>
       <Box p={4}>
-        <Heading mb={8}>NFTLabs SDK Example</Heading>
+        <Heading mb={8}>thirdweb SDK Example</Heading>
 
         <FormControl display="flex" align="center" mb={4}>
           <FormLabel htmlFor="darkMode" mb="0">

@@ -1,4 +1,4 @@
-import { NFTLabsSDK } from "@nftlabs/sdk";
+import { ThirdwebSDK } from "@3rdweb/sdk";
 import { ethers } from "ethers";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -51,7 +51,7 @@ function generateMetadataForType(account: string, type: string) {
 }
 
 export default (req: NextApiRequest, res: NextApiResponse): Promise<any> => {
-  const sdk = new NFTLabsSDK(
+  const sdk = new ThirdwebSDK(
     new ethers.Wallet(
       process.env.PRIVATE_KEY as string,
       ethers.getDefaultProvider(getRpcUrl())

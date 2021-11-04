@@ -1,54 +1,8 @@
-import React from "react";
-import { useEtherBalance, useEthers } from "@usedapp/core";
-import { Button, Heading, Stack, Text, useToast } from "@chakra-ui/react";
-import { formatEther } from "@ethersproject/units";
+import { Heading, Stack, Text } from "@chakra-ui/react";
 import { BigNumber } from "@ethersproject/bignumber";
-
-const SignMessageComponent: React.FC = () => {
-  const { library, account } = useEthers();
-  const showToast = useToast();
-
-  return (
-    <Button
-      onClick={() => {
-        if (!library || !account) {
-          showToast({
-            title: "Sign Message Failed",
-            description: "Wallet not connected",
-            status: "error",
-            duration: 15000,
-            isClosable: true,
-          });
-          return;
-        }
-
-        library
-          .getSigner(account)
-          .signMessage(`Signing message for dApp starter @ ${Date.now()}`)
-          .then((signature: any) => {
-            showToast({
-              title: "Sign Message Success",
-              description: `Signature: ${signature}`,
-              status: "success",
-              duration: 15000,
-              isClosable: true,
-            });
-          })
-          .catch((error: any) => {
-            showToast({
-              title: "Sign Message Failed",
-              description: error && error.message ? `${error.message}` : "",
-              status: "error",
-              duration: 15000,
-              isClosable: true,
-            });
-          });
-      }}
-    >
-      Sign Message
-    </Button>
-  );
-};
+import { formatEther } from "@ethersproject/units";
+import { useEtherBalance, useEthers } from "@usedapp/core";
+import React from "react";
 
 const ChainComponent: React.FC = () => {
   const { chainId } = useEthers();

@@ -1,7 +1,7 @@
+import { ThirdwebSDK } from "@3rdweb/sdk";
+import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { useEthers } from "@usedapp/core";
 import React, { useEffect, useState } from "react";
-import { Image, Text, Stack, Box, Flex } from "@chakra-ui/react";
-import { NFTLabsSDK } from "@nftlabs/sdk";
 
 export const SwordList: React.FC<{ displayAccount?: string }> = ({
   displayAccount,
@@ -14,7 +14,7 @@ export const SwordList: React.FC<{ displayAccount?: string }> = ({
       if (!library) {
         return;
       }
-      const sdk = new NFTLabsSDK(library.getSigner());
+      const sdk = new ThirdwebSDK(library.getSigner());
       const nft = sdk.getNFTModule(
         process.env.NEXT_PUBLIC_NFT_MODULE_ADDRESS as string
       );
