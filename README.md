@@ -7,9 +7,9 @@ A starter project with:
 
 #### Environment Variables
 ```
-PRIVATE_KEY=<wallet private key with admin/minter role>
+PRIVATE_KEY=<wallet private key with minter role>
 NEXT_PUBLIC_RPC_URL=<alchemy / infura / rpc url. defaults to Polygon Mumbai public rpc if left empty>
-NEXT_PUBLIC_NFT_MODULE_ADDRESS=<NFT module address from console.nftlabs.co>
+NEXT_PUBLIC_NFT_MODULE_ADDRESS=<NFT module address from thirdweb.com>
 ```
 
 
