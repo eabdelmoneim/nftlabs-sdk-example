@@ -1,5 +1,5 @@
 import { ThirdwebSDK } from "@3rdweb/sdk";
-import { Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Stack, Text, useToast } from "@chakra-ui/react";
 import { useEthers } from "@usedapp/core";
 import React, { useEffect, useState } from "react";
 
@@ -8,6 +8,8 @@ export const MarketList: React.FC<{ displayAccount?: string }> = ({
 }) => {
   const { library } = useEthers();
   const [swordList, setSwordMarketList] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     async function fetchMarketList() {
@@ -27,16 +29,35 @@ export const MarketList: React.FC<{ displayAccount?: string }> = ({
 
   async function buyNFTfromAPI(listingId: any) {
 
-    await fetch("/api/buy_sword", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        listingId,
-        quantity: "1",
-      }),
+    if (!library) {
+      return;
+    }
+
+    setLoading(true);
+
+    const sdk = new ThirdwebSDK(library.getSigner());
+      const market = sdk.getMarketModule(
+        process.env.NEXT_PUBLIC_MARKET_MODULE_ADDRESS as string
+      );
+
+    await market.buy(listingId, 1);
+
+    setLoading(false);
+    toast({
+      title: "You've successfully bought a sword from the market!",
+      description: "refresh the page to see your updated inventory.",
     });
+
+    // await fetch("/api/buy_sword", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     listingId,
+    //     quantity: "1",
+    //   }),
+    // });
   }
 
   return (
