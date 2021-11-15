@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useEthers } from "@usedapp/core";
 import { ConnectWalletButton } from "components/ConnectWallet";
+import { MarketList } from "components/MarketList";
 import { MintSwordButton } from "components/MintSwordButton";
 import { SwordList } from "components/SwordList";
 import { Wallet } from "components/Wallet";
@@ -66,6 +67,11 @@ const HomePage: React.FC = () => {
           <Box p={4}>
             <Text fontWeight="bold">Sword owned by me:</Text>
             <SwordList displayAccount={account} />
+          </Box>
+
+          <Box p={4}>
+            <Text fontWeight='bold'>Swords listed on market:</Text>
+            <MarketList displayAccount={account}/>
           </Box>
         </>
       ) : null}
