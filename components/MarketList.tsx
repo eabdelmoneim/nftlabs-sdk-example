@@ -48,16 +48,6 @@ export const MarketList: React.FC<{ displayAccount?: string }> = ({
       description: "refresh the page to see your updated inventory.",
     });
 
-    // await fetch("/api/buy_sword", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     listingId,
-    //     quantity: "1",
-    //   }),
-    // });
   }
 
   return (
